@@ -45,6 +45,16 @@ Then, run the image in a Pod with a single instance Deployment.
     There are 4 pods in the cluster
     ...
 
+If you are running a [Minikube][mk] cluster, you need to specify an additional flag to prevent the cluster 
+rom pulling the image from a container registry.
+    
+    kubectl run --rm -i demo --image=in-cluster --image-pull-policy=Never
+
+    There are 4 pods in the cluster
+    There are 4 pods in the cluster
+    There are 4 pods in the cluster
+    ...
+
 The example now runs on Kubernetes API and successfully queries the number of
 pods in the cluster every 10 seconds.
 
