@@ -19,10 +19,11 @@ Kubernetes.
 
 If you are running a [Minikube][mk] cluster, you can build this image directly
 on the Docker engine of the Minikube node without pushing it to a registry. To
-build the image on Minikube:
+build the image on Minikube. Note you must also manually import the image into minikube:
 
     eval $(minikube docker-env)
     docker build -t in-cluster .
+    minikube image load in-cluster
 
 If you are not using Minikube, you should build this image and push it to a registry
 that your Kubernetes cluster can pull from.
@@ -35,7 +36,7 @@ permissions.
 kubectl create clusterrolebinding default-view --clusterrole=view --serviceaccount=default:default
 ```
 
-Then, run the image in a Pod with a single instance Deployment:
+Then, run the image in a Pod with a single instance Deployment.
 
     kubectl run --rm -i demo --image=in-cluster
 
